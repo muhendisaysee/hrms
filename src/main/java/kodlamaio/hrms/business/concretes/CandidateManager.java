@@ -33,18 +33,12 @@ public class CandidateManager implements CandidateService{
 
 	@Override
 	public Result add(Candidate candidate) {
-		System.out.println("ARADIĞIN ŞEY : "+candidateDao.findByEmailEquals(candidate.getEmail()));
-		if(candidateDao.findByEmailEquals(candidate.getEmail())) {
-			return new ErrorResult("Database has this email");
-		}
-		else if(candidateDao.findByIdentityNumberEquals(candidate.getIdentityNumber())) {
-			return new ErrorResult("Database has this identity number");
-		}
-		else {
+			if(this.candidateDao.findByEmailEquals(candidate.getEmail()).isEmpty() && this.candidateDao.findByIdentityNumberEquals(candidate.getIdentityNumber()).isEmpty()) {
 				this.candidateDao.save(candidate);
 				return new SuccessResult("add candidate");
-		}
-	
+			}else {
+				return new ErrorResult("Email or identityNumber recorded");
+			}
 	}
 
 }

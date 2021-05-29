@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -31,8 +32,12 @@ public class EmployerManager implements EmployerService{
 
 	@Override
 	public Result add(Employer employer) {
-		this.employerDao.save(employer);
-		return new SuccessResult("add employer");
+		if(this.employerDao.findByEmailEquals(employer.getEmail()).isEmpty()) {
+			this.employerDao.save(employer);
+			return new SuccessResult("add employer");
+		}else {
+			return new ErrorResult("Email recorded");
+		}
 	}
 
 }

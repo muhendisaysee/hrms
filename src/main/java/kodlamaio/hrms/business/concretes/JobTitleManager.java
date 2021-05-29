@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobTitleService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -32,8 +33,11 @@ public class JobTitleManager implements JobTitleService{
 		}
 		@Override
 		public Result add(JobTitle jobTitle) {
-			this.jobTitleDao.save(jobTitle);
-			return new SuccessResult("add job title");
+			if(this.jobTitleDao.existsJobTitleByTitle(jobTitle.getTitle())) {
+				return new ErrorResult("job title recorded");
+			}else {
+				this.jobTitleDao.save(jobTitle);
+				return new SuccessResult("add job title");
+			}
 		}
-
 	}
