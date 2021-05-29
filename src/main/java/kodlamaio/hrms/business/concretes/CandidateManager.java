@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -31,8 +33,18 @@ public class CandidateManager implements CandidateService{
 
 	@Override
 	public Result add(Candidate candidate) {
-		this.candidateDao.save(candidate);
-		return new SuccessResult("add candidate");
+		System.out.println("ARADIĞIN ŞEY : "+candidateDao.findByEmailEquals(candidate.getEmail()));
+		if(candidateDao.findByEmailEquals(candidate.getEmail())) {
+			return new ErrorResult("Database has this email");
+		}
+		else if(candidateDao.findByIdentityNumberEquals(candidate.getIdentityNumber())) {
+			return new ErrorResult("Database has this identity number");
+		}
+		else {
+				this.candidateDao.save(candidate);
+				return new SuccessResult("add candidate");
+		}
+	
 	}
 
 }
