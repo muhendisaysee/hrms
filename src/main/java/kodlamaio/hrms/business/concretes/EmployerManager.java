@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kodlamaio.hrms.adapter.EMailCheckService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -18,11 +19,13 @@ import kodlamaio.hrms.entities.concretes.Employer;
 public class EmployerManager implements EmployerService{
 	
 	private EmployerDao employerDao;
+	private EMailCheckService emailCheckService;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao) {
+	public EmployerManager(EmployerDao employerDao, EMailCheckService emailCheckService) {
 		super();
 		this.employerDao = employerDao;
+		this.emailCheckService = emailCheckService;
 	}
 
 	@Override
@@ -33,11 +36,17 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public Result add(Employer employer) {
 		if(this.employerDao.findByEmailEquals(employer.getEmail()).isEmpty()) {
-			this.employerDao.save(employer);
-			return new SuccessResult("add employer");
+			if(emailCheckService.sendMail(employer)) {
+				if(emailCheckService.verificationCheckControl(employer)) {
+					this.employerDao.save(employer);
+					return new SuccessResult("add employer");
+				}
+			}
+			
 		}else {
 			return new ErrorResult("Email recorded");
 		}
+		return new ErrorResult("Email not verification");
 	}
 
 }
