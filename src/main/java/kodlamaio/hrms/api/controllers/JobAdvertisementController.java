@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
-@RequestMapping("/api/candidates")
-public class CandidateController {
+@RequestMapping("/api/jobAdvertisements")
+public class JobAdvertisementController {
 
-	private CandidateService candidateService;
+	private JobAdvertisementService jobAdvertisementService;
 
 	@Autowired
-	public CandidateController(CandidateService candidateService) {
+	public JobAdvertisementController(JobAdvertisementService jobAdvertisementService) {
 		super();
-		this.candidateService = candidateService;
-	}
-	@GetMapping("/getAll")
-	public DataResult<List<Candidate>> getAll(){
-		return this.candidateService.getAll();
-		
-	}
-	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate) {
-		return this.candidateService.add(candidate);
+		this.jobAdvertisementService = jobAdvertisementService;
 	}
 	
+	@GetMapping("/getAll")
+	public DataResult<List<JobAdvertisement>> getAll(){
+		return this.jobAdvertisementService.getAll();
+	}
+	
+	@PostMapping("/add")
+	public Result add(@RequestBody JobAdvertisement jobAdvertisement) {
+		return this.jobAdvertisementService.add(jobAdvertisement);
+	}
 }
