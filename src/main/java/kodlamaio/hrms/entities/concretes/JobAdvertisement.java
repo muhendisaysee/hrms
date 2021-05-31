@@ -47,6 +47,8 @@ public class JobAdvertisement {
 	@JoinColumn(name = "employer_id")
 	private Employer employer; 
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "city_id")
+	private City city; 
 	
 }
