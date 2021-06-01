@@ -34,6 +34,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Recorded job advertisement");
 	}
+	
+	
 	@Override
 	public DataResult<List<JobAdvertisement>> getByStatusAndEmployer_Id(boolean status,int employerId){
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByStatusAndEmployer_Id(status,employerId), "Process");
@@ -44,6 +46,20 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByStatusTrue(), "Get all Job advertisements are true");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> findAllByStatusTrueOrderByDeadlineAsc() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAllByStatusTrueOrderByDeadlineAsc(), "List of job Advertisements by Asc");
+	}
+	
+	@Override
+	public DataResult<JobAdvertisement> getByStatus(int jobAdvertisementId) {
+		jobAdvertisementDao.getByStatus(jobAdvertisementId).setStatus(false);
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByStatus(jobAdvertisementId), "List of job Advertisements by Asc");
+			
+	}
+
+
+	
 
 	
 
