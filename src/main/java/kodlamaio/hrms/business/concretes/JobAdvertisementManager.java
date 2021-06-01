@@ -34,5 +34,17 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Recorded job advertisement");
 	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getByStatusAndEmployer_Id(boolean status,int employerId){
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByStatusAndEmployer_Id(status,employerId), "Process");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByStatusTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByStatusTrue(), "Get all Job advertisements are true");
+	}
+
+
+	
 
 }

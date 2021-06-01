@@ -9,5 +9,6 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 	Result add(JobAdvertisement jobAdvertisement);
-	
+	DataResult<List<JobAdvertisement>> getByStatusAndEmployer_Id(boolean status,int employerId);
+	DataResult<List<JobAdvertisement>> getByStatusTrue();
 }
