@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,42 +17,23 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
+@Table(name = "resume_tech")
 @AllArgsConstructor
-@Table(name = "resumes")
-public class Resume {
-	
+@NoArgsConstructor
+public class ResTechnology {
+
 	@Id
 	@GeneratedValue
-	@Column(name = "resume_id")
+	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "photo")
-	private String photo;
-	
-	@Column(name = "github_link")
-	private String githubLink;
-	
-	@Column(name = "linkedln_link")
-	private String linkedlnLink;
-	
 	@Column(name = "description")
-	private String description;
+	private int description;
 	
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	@Column(name = "updated_date")
-	private Date updatedDate;
-	
-	@Column(name = "is_active")
-	private boolean isActive;
-	
 	@ManyToOne
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate; 
-	
-	@OneToMany(mappedBy = "resume")
-	private List<ResTechnology> resTechnology;
-	
+	@JoinColumn(name = "resume_id")
+	private Resume resume; 
 }
