@@ -56,4 +56,6 @@ public class Resume {
 	@OneToMany(mappedBy = "resume")
 	private List<ResTechnology> resTechnology;
 	
+	@OneToMany(mappedBy = "resume")
+	private List<ResLanguage> resLanguage;
 }
