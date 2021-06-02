@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,8 +40,9 @@ public class JobAdvertisement {
 	@Column(name = "open_position")
 	private int openPosition;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "deadline")
-	private LocalDate deadline;
+	private Date deadline;
 	
 	@Column(name = "status")
 	private boolean status;

@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,12 +33,15 @@ public class ResEducation {
 	@Column(name = "department")
 	private String department;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "started_date")
 	private Date startedDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "ended_date")
 	private Date endedDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "created_date")
 	private Date createdDate;
 	

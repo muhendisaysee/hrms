@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ public class ResEduDegreeController {
 		return this.resEduDegreeService.getAll();
 	}
 	@PostMapping("/add")
-	public Result add(ResEduDegree resEduDegree) {
+	public Result add(@RequestBody ResEduDegree resEduDegree) {
 		return this.resEduDegreeService.add(resEduDegree);
 	}
 	

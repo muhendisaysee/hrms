@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class ResLanguageController {
 		return this.resLanguageService.getAll();
 	}
 	@PostMapping("/add")
-	public Result add(ResLanguage resLanguage) {
+	public Result add(@RequestBody ResLanguage resLanguage) {
 		return this.resLanguageService.add(resLanguage);
 	}
 	
