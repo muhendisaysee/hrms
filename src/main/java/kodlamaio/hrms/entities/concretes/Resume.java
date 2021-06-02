@@ -61,4 +61,7 @@ public class Resume {
 	
 	@OneToMany(mappedBy = "resume")
 	private List<ResEducation> resEducation;
+	
+	@OneToMany(mappedBy = "resume")
+	private List<ResJobExperience> resJobExperience;
 }
