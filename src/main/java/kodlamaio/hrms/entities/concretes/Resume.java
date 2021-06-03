@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -27,16 +28,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "resumes")
-
 public class Resume {
 	
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
-	
-	@Column(name = "photo")
-	private String photo;
 	
 	@Column(name = "github_link")
 	private String githubLink;
@@ -46,6 +43,9 @@ public class Resume {
 	
 	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "photo")
+	private String photo;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_date")
@@ -62,15 +62,19 @@ public class Resume {
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate; 
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "resume")
 	private List<ResTechnology> resTechnology;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "resume")
 	private List<ResLanguage> resLanguage;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "resume")
 	private List<ResEducation> resEducation;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "resume")
 	private List<ResJobExperience> resJobExperience;
 	
