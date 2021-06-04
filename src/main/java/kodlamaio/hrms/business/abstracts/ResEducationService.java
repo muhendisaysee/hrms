@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.concretes.ResEducation;
 public interface ResEducationService {
 	DataResult<List<ResEducation>> getAll();
 	Result add(ResEducation resEducation);
+	DataResult<List<ResEducation>> getAllSorted();
 }

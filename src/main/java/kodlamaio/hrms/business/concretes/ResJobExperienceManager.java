@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ResJobExperinceService;
@@ -33,5 +34,11 @@ public class ResJobExperienceManager implements ResJobExperinceService{
 		this.resJobExperienceDao.save(resJobExperience);
 		return new SuccessResult("Recorded job experience");
 	}
+	@Override
+	public DataResult<List<ResJobExperience>> getAllSorted() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "endedDate");
+		return new SuccessDataResult<List<ResJobExperience>>( this.resJobExperienceDao.findAll(sort),"Başarılı");
+	}	
+
 
 }

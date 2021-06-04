@@ -33,5 +33,8 @@ public class ResJobExperienceController {
 	public Result add(@RequestBody ResJobExperience resJobExperience) {
 		return this.resJobExperienceService.add(resJobExperience);
 	}
-	
+	@GetMapping("/getAllJobExperiencesDesc")
+	public DataResult<List<ResJobExperience>> getAllSorted(){
+		return this.resJobExperienceService.getAllSorted();
+	}
 }

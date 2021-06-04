@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ResEducationService;
@@ -34,5 +35,14 @@ public class ResEducationManager implements ResEducationService{
 		this.resEducationDao.save(resEducation);
 		return new SuccessResult("Recorded resume education");
 	}
+
+	@Override
+	public DataResult<List<ResEducation>> getAllSorted() {
+
+		Sort sort = Sort.by(Sort.Direction.DESC, "endedDate");
+		return new SuccessDataResult<List<ResEducation>>( this.resEducationDao.findAll(sort),"Başarılı");
+	}	
+
+
 
 }

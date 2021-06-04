@@ -32,6 +32,10 @@ public class ResEducationController {
 	@PostMapping("/add")
 	public Result add(@RequestBody ResEducation resEducation) {
 		return this.resEducationService.add(resEducation);
+	}	
+	@GetMapping("/getAllEducationsDesc")
+	public DataResult<List<ResEducation>> getAllSorted(){
+		return this.resEducationService.getAllSorted();
 	}
 	
 	

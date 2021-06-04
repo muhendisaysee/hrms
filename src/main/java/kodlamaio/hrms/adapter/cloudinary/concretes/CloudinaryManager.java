@@ -31,10 +31,6 @@ public class CloudinaryManager implements CloudinaryService{
 		this.cloudinary = new Cloudinary("cloudinary://415338817677416:Yifa5FsD_FvTPwtvoSTrQCwmbDQ@dwy15gvod");
 	}
 	public Map upload(MultipartFile multipartFile) throws IOException{
-		//File file = convert(multipartFile);
-		//Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-		//file.delete();
-		//return result;
 		Map upload = cloudinary.uploader().upload(multipartFile.getBytes(), ObjectUtils.emptyMap());
 		return upload;
 	}
@@ -42,12 +38,6 @@ public class CloudinaryManager implements CloudinaryService{
 	/*public Map delete(String id) throws IOException{
 		Map result = cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
 		return result;
-	}
-	private File convert(MultipartFile multipartFile) throws IOException {
-		File file = new File(multipartFile.getOriginalFilename());
-		FileOutputStream fo = new FileOutputStream(file);
-		fo.close();
-		return file;
 	}*/
 
 	
