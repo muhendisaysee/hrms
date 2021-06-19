@@ -74,7 +74,7 @@ public class Resume {
 	@OneToMany(mappedBy = "resume")
 	private List<ResEducation> resEducation;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "resume")
 	private List<ResJobExperience> resJobExperience;
 	

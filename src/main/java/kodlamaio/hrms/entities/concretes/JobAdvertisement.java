@@ -47,8 +47,9 @@ public class JobAdvertisement {
 	@Column(name = "status")
 	private boolean status;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "release_date")
-	private LocalDate releaseDate;
+	private Date releaseDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "employer_id")
